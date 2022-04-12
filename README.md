@@ -1,4 +1,4 @@
-# STM32G030F6P6TR-dev-board
+# STM32G030F6P6TR development board
 Small breadboard friendly development board for the 32bit STM32G030F6P6TR microcontroller (currently stocked and priced at just over $1 on JLC!) with the following available features:
 
 - 32Kb Flash
