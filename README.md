@@ -3,7 +3,7 @@ Small breadboard friendly development board for the 32bit STM32G030F6P6TR microc
 
 - 32Kb Flash
 - 8Kb RAM.
-- 12 bit ADC
+- 12 bit ADC (16 channels)
 - 2 x USART
 - 2 x i2C
 - i2S
