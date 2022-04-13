@@ -18,8 +18,14 @@ Note that many of the peripherals share pins.
 
 This board includes 8 USER LEDs, 2 user buttons, UART to USB bridge, SHT30-DIS-B temperature and humidity sensor and all pins broken out for development use. Pullups on i2C pins. On-board 3.3V regulator from USB supply, with header pins for 3.3V and 5V available for use.
 
+The V1.1 version also includes a LSM6DS3TR IMU device on the i2C bus. Other than this, it is identical.
+
 All files required for full PCBA production at JLCPCB are included in the "Production files" folder.
 
 Firmware will be in the works once I receive the boards!
 
-![Render](./Images/render.png?raw=true)
+V1.0
+![Render](./V1.0/Images/render.png?raw=true)
+
+V1.1 (with IMU)
+![Render](./V1.1/Images/render.png?raw=true)
