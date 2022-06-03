@@ -1,0 +1,6 @@
+funcs.c:40:6:debugPrint	16	static
+funcs.c:45:6:debugPrintln	24	static
+funcs.c:53:6:HAL_TIM_PeriodElapsedCallback	24	static
+funcs.c:71:6:doLoop	88	static
+funcs.c:123:9:getHumidityTemp	32	static
+funcs.c:140:6:scanBus	40	static
