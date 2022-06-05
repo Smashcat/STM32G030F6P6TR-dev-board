@@ -21,11 +21,12 @@ uint32_t pTmr=0;
 char s[64];
 
 // LED brightnesses, for timer interrupt to use to generate PWM on LED pins
-int8_t ledLevel[8]={0,25,50,75,100,75,50,25};
+//int8_t ledLevel[8]={0,25,50,75,100,75,50,25};
+int8_t ledLevel[8]={ 100,50,0,50, 26,76,74,24 };
 
 // Direction of change for LED brightnesses. The brightness is changed at 100hz
-int8_t ledDir[8]={1,1,1,1,-1,-1,-1,-1};
-
+//int8_t ledDir[8]={1,1,1,1,-1,-1,-1,-1};
+int8_t ledDir[8]={ -1,-1,1,1, -2,-2,2,2 };
 // ticker used in timer interrupt for PWM generation
 volatile uint8_t I_ticker=0;
 
@@ -49,11 +50,13 @@ void debugPrintln(UART_HandleTypeDef *huart, char _out[]){
 }
 
 
-// Interrupt called at 10Khz, mostlu used for PWM, and also increments I_tocks at ~100hz
+// Interrupt called at 10Khz, mostly used for PWM, and also increments I_tocks at ~200hz
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef* htim)
 {
-	if(++I_ticker==101){
+	if(++I_ticker==100){
 		I_ticker=0;
+	}
+	if(I_ticker==0 || I_ticker==50){
 		++I_tocks;
 	}
 	volatile uint8_t x=0;
@@ -72,17 +75,22 @@ void doLoop(){
 	if(I_tocks){
 		I_tocks=0;
 		// Update the LED brightnesses at 100hz
+		int8_t chg=1;
 		for(uint8_t n=0;n<8;n++){
+			if(n==4)
+				chg=2;
 			ledLevel[n]+=ledDir[n];
-			if(ledLevel[n]==100){
-				ledDir[n]=-1;
-			}else if(ledLevel[n]==0){
-				ledDir[n]=1;
+			if(ledLevel[n]>=100){
+				ledLevel[n]=100;
+				ledDir[n]=-chg;
+			}else if(ledLevel[n]<=0){
+				ledLevel[n]=0;
+				ledDir[n]=chg;
 			}
 		}
 
 		// Show the date/time and button states around every second
-		if(++pTmr==100){
+		if(++pTmr==200){
 			uint32_t buts = GPIOC->IDR;
 			HAL_RTC_GetTime(&hrtc, &rtcTime, RTC_FORMAT_BIN);//Get time
 			HAL_RTC_GetDate(&hrtc, &rtcDate, RTC_FORMAT_BIN);//get date
@@ -112,7 +120,7 @@ void doLoop(){
 				h/=100;
 				sprintf(s,"Temp: %d.%dC, Relative Humidity: %d.%d%%\r\n",td,tm,hd,hm);
 			}
-			debugPrintln(&huart1, s);
+			debugPrint(&huart1, s);
 		}
 
 	}
