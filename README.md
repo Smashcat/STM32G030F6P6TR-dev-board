@@ -22,7 +22,7 @@ The V1.1 version also includes a LSM6DS3TR IMU device on the i2C bus. Other than
 
 All files required for full PCBA production at JLCPCB are included in the "Production files" folder.
 
-Firmware will be in the works once I receive the boards!
+Example firmware added to show use of i2C sensor, plus LEDs and internal clock.
 
 V1.0
 ![Render](./V1.0/Images/render.png?raw=true)
