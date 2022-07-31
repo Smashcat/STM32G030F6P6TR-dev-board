@@ -7,4 +7,4 @@ If either of the two user buttons are pressed, they will also appear in the seri
 
 This example was put together using STM32Cube IDE version 1.8.0 on Windows.
 
-You will probably need to adjust the output directory by right clocking on the project, then properties, then "Debug/Run settings". Then click on the launch config, and edit.
+You will probably need to adjust the output directory by right clicking on the project, then properties, then "Debug/Run settings". Then click on the launch config, and edit.
